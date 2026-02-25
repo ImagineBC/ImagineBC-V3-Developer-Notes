@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamification System Development Report</title>
+    <title>Gamification System Development Report & Merge Guide</title>
     <style>
         :root {
             --bg-base: #0a0a0a;
             --bg-card: #171717;
+            --bg-card-alt: #1e1e1e;
             --text-main: #e5e5e5;
             --text-muted: #a3a3a3;
             --border-color: #333333;
@@ -17,14 +18,11 @@
             --explorer: #4A90E2;
             --gamer: #E74C3C;
             --patron: #F39C12;
-            --accent: #d4af37; /* Gold for achievements */
+            --accent: #d4af37; /* Gold */
+            --accent-hover: #f1c40f;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -61,9 +59,7 @@
             font-size: 0.95rem;
         }
 
-        .meta-info span strong {
-            color: var(--text-main);
-        }
+        .meta-info span strong { color: var(--text-main); }
 
         /* Dynamic Table of Contents */
         #toc {
@@ -79,23 +75,20 @@
             margin-bottom: 1rem;
             color: var(--text-main);
             border: none;
+            padding-bottom: 0;
         }
 
-        #toc ul {
-            list-style-type: none;
-        }
-
+        #toc ul { list-style-type: none; padding-left: 0; }
+        
         #toc a {
             color: var(--text-muted);
             text-decoration: none;
             display: block;
-            padding: 0.3rem 0;
+            padding: 0.4rem 0;
             transition: color 0.2s;
         }
 
-        #toc a:hover {
-            color: var(--accent);
-        }
+        #toc a:hover { color: var(--accent); }
 
         /* Section Styling */
         section {
@@ -122,16 +115,67 @@
             color: var(--text-main);
         }
 
-        p, ul, ol {
-            margin-bottom: 1rem;
+        p, ul, ol { margin-bottom: 1rem; }
+        ul, ol { padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+
+        /* Links and Buttons */
+        a.download-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--accent);
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            transition: background-color 0.2s;
         }
 
-        ul {
-            padding-left: 1.5rem;
+        a.download-link:hover { background-color: var(--accent-hover); }
+
+        /* AI Prompt Card */
+        .prompt-card {
+            background-color: var(--bg-base);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
         }
 
-        li {
-            margin-bottom: 0.5rem;
+        .prompt-header {
+            background-color: var(--border-color);
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .copy-btn {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid #555;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover { background-color: #444; }
+        .copy-btn.copied { background-color: var(--citizen); border-color: var(--citizen); color: #000; }
+
+        .prompt-body {
+            padding: 1.5rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            white-space: pre-wrap;
+            overflow-x: auto;
         }
 
         /* Table Styling */
@@ -148,15 +192,8 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        th {
-            background-color: rgba(255, 255, 255, 0.05);
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        tr:hover {
-            background-color: rgba(255, 255, 255, 0.02);
-        }
+        th { background-color: rgba(255, 255, 255, 0.05); font-weight: 600; }
+        tr:hover { background-color: rgba(255, 255, 255, 0.02); }
 
         /* Callouts */
         blockquote {
@@ -204,7 +241,7 @@
         <h1>Gamification System Development Report</h1>
         <div class="meta-info">
             <span><strong>Date:</strong> February 25, 2026</span>
-            <span><strong>Developer:</strong> Willow + Claude Code</span>
+            <span><strong>Developer:</strong> Osiris + Claude Code</span>
             <span><strong>Project:</strong> ImagineBC v3 — Achievement System Realization</span>
         </div>
     </header>
@@ -215,6 +252,118 @@
     </nav>
 
     <main id="content">
+
+        <section>
+            <h2>Deployment & Merge Instructions</h2>
+            <p>To finalize the deployment of these features, Erik will need to merge the package into the master build. Please download the package below and use the provided prompt to execute the merge autonomously.</p>
+            
+            <a href="https://github.com/ImagineBC/ImagineBC-V3-Developer-Notes/raw/3281a3a428a54b04b1a0c2cd5434d836f9ad54ab/Achievement-gamification-merge-package-2026-02-25.zip" class="download-link" target="_blank" rel="noopener noreferrer">
+                📦 Download Merge Package (ZIP)
+            </a>
+
+            <h3>Merge Prompt for Erik's AI</h3>
+            <p>Copy everything in the block below and paste it as a prompt to your AI assistant (Claude, Cursor, etc.).</p>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span>🤖 AI Merge Prompt</span>
+                    <button class="copy-btn" id="copyBtn" onclick="copyPromptText()">Copy Text</button>
+                </div>
+                <div class="prompt-body" id="promptText">You are merging a feature package into my master build of the ImagineBC v3 project. The project is a React 19 + .NET 9 + PostgreSQL 18 application.
+
+I have placed a zip file called `gamification-merge-package-2026-02-25.zip` in the project root directory. Your job is to handle the ENTIRE merge process autonomously — unzipping, copying new files, merging modified files, rebuilding, and verifying. I do not want to do any manual steps myself.
+
+## Step 1: Unzip the Package
+Unzip `gamification-merge-package-2026-02-25.zip` into a temporary folder in the project root. The zip contains this structure:
+
+&#96;&#96;&#96;
+MERGE-INSTRUCTIONS.md
+frontend/src/components/...
+backend/Controllers/...
+backend/Services/...
+docs/gamification-dev-report-2025-02-25.md
+&#96;&#96;&#96;
+
+## Step 2: Copy the 2 NEW Files
+These files do NOT exist in the current codebase. Copy them directly to their destinations:
+- From: `frontend/src/components/homebase/pages/AchievementCelebration.jsx`
+  To: `IBC2React/src/components/homebase/pages/AchievementCelebration.jsx`
+- From: `frontend/src/components/homebase/pages/AchievementDetailPage.jsx`
+  To: `IBC2React/src/components/homebase/pages/AchievementDetailPage.jsx`
+
+## Step 3: Merge the 9 MODIFIED Files
+These files ALREADY EXIST in the codebase. You must diff each package version against my current version and merge the changes intelligently. Do NOT blindly overwrite — Osiris's versions are based on an older snapshot of my build, so my files may have changes she doesn't have.
+
+For each file: read both versions, identify what Osiris added/changed, and apply those specific changes into my current version.
+
+### Frontend (5 files)
+1. **`IBC2React/src/components/homebase/pages/renderAchievements.jsx`**
+   - COMPLETELY REWRITTEN by Osiris. It is the Achievement page UI. If I have not made changes to this file since Osiris's last sync, you can replace it entirely. If I have made changes, merge carefully.
+2. **`IBC2React/src/components/homebase/pages/GamificationUnlockNotifier.jsx`**
+   - REWRITTEN. It now uses `AchievementCelebration` overlay instead of the old banner approach, and includes a queue system for multiple unlocks.
+3. **`IBC2React/src/components/homebase/navigation/HomeBasePageRouter.jsx`**
+   - ADDITIONS ONLY: Osiris added a lazy import for `AchievementDetailPage` and an `achievement-detail` route case in the render logic. Look for `createLazyPage` imports and `locationId === 'achievement-detail'` conditional blocks.
+4. **`IBC2React/src/components/homebase/imaginarium/map/MapDetailPanel.jsx`**
+   - SMALL ADDITION: Added a `MAP_LOCATION_ENTERED` gamification trigger that fires on component mount. Look for an import of gamification wrappers and a `useEffect` that fires a gamification event.
+5. **`IBC2React/src/components/financebase/manageLedgerQuery.jsx`**
+   - SMALL ADDITION: Added a `LEDGER_OPENED` gamification trigger that fires on component mount. Same pattern as above — import + useEffect.
+
+### Backend (4 files — Controllers)
+6. **`IBC2CSharp/imaginebc-mainservice/Controllers/GamificationController.cs`**
+   - MODIFIED: Enhanced the `check-recent-unlocks` endpoint to return `title`, `description`, and `achievementType`. Enhanced the `GetAchievement` endpoint to return `dependencies` from the `achievement_dependencies` table.
+7. **`IBC2CSharp/imaginebc-mainservice/Controllers/GuardiansController.cs`**
+   - SMALL ADDITION: Added a `GUARDIANS_PATROL_COMPLETED` trigger inside the `RecordTelemetry` method (fire-and-forget `Task.Run` calling `ProcessEventAsync`).
+8. **`IBC2CSharp/imaginebc-mainservice/Controllers/HealthBaseController.cs`**
+   - ADDITIONS: Added 5 gamification triggers across various HealthBase endpoints: `HEALTH_LOG_CREATED`, `MOOD_LOG_CREATED`, `SLEEP_LOG_CREATED`, `NUTRITION_LOG_CREATED`, `EXERCISE_LOG_CREATED`.
+
+### Backend (2 files — Services)
+9. **`IBC2CSharp/imaginebc-mainservice/Services/GamificationService.cs`**
+   - MODIFIED: Added 6 achievement filter functions so each event type only evaluates its relevant achievements. Also added a safety fallback returning an empty list for unknown event types.
+10. **`IBC2CSharp/imaginebc-mainservice/Services/Arcade/PollsService.cs`**
+   - SMALL ADDITION: Added a `POLL_VOTE_CAST` gamification trigger inside `CastVoteAsync`.
+11. **`IBC2CSharp/imaginebc-mainservice/Services/accounting/AccountingService.cs`**
+   - SMALL ADDITION: Added a `CONTENT_PURCHASED` gamification trigger inside `PurchaseMediaItem`.
+
+## Step 4: Copy Documentation
+Copy the development report to the project docs folder:
+- From: `docs/gamification-dev-report-2025-02-25.md`
+- To: `Documents/gamification-dev-report-2025-02-25.md`
+
+## Step 5: Rebuild the Backend
+The backend .NET project must be built from the NESTED directory (it targets net9.0):
+
+&#96;&#96;&#96;bash
+cd IBC2CSharp/imaginebc-mainservice/imaginebc-mainservice
+dotnet build
+&#96;&#96;&#96;
+
+IMPORTANT: Do NOT build from the outer directory — that has an older csproj targeting net8.0 and will fail. Verify the build completes with 0 errors.
+
+## Step 6: Verify Frontend
+No new npm packages were added. Verify the frontend builds clean:
+
+&#96;&#96;&#96;bash
+cd IBC2React
+npm run build
+&#96;&#96;&#96;
+
+## Step 7: Database
+**No database changes are needed.** All 6 gamification tables and 55 achievements already exist. No migrations or SQL scripts to run.
+
+## Step 8: Clean Up
+After a successful merge and build, delete the extracted temporary folder and the zip file from the project root.
+
+## Summary of What This Feature Does
+- **Achievement Page:** Progress dashboard with expandable rows
+- **Celebration Overlay:** Full-screen animation with confetti
+- **Trophy Case:** Detail page with dependency tracking and title equip
+- **12 Gamification Triggers:** Wired across 7 modules
+- **Achievement Filter Safety:** Event types only match relevant achievements
+
+All work was done by Osiris and Claude Code over two sessions on February 24–25, 2026.</div>
+            </div>
+        </section>
+
         <section>
             <h2>Executive Summary</h2>
             <p>Over two sessions, the existing achievement/gamification system has been transformed from a dormant database schema into a fully operational, visually polished experience. The system now actively tracks user actions across 7 modules, fires gamification events, evaluates achievement criteria, unlocks achievements in real-time, and presents a console-quality celebration overlay when milestones are reached. The Achievements page UI has been completely redesigned from a flat list into a progress-dashboard experience with pillar grouping, visual hierarchy, and interactive detail rows.</p>
@@ -416,11 +565,9 @@
         const sections = document.querySelectorAll('main section h2');
         
         sections.forEach((heading, index) => {
-            // Create an ID for each section heading if it doesn't have one
             const id = `section-${index}`;
             heading.id = id;
             
-            // Create the list item and link for the TOC
             const li = document.createElement('li');
             const a = document.createElement('a');
             
@@ -431,6 +578,25 @@
             tocList.appendChild(li);
         });
     });
+
+    // Copy Prompt Functionality
+    function copyPromptText() {
+        const textToCopy = document.getElementById('promptText').innerText;
+        const btn = document.getElementById('copyBtn');
+        
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            btn.innerText = 'Copied! ✓';
+            btn.classList.add('copied');
+            
+            setTimeout(() => {
+                btn.innerText = 'Copy Text';
+                btn.classList.remove('copied');
+            }, 3000);
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+            btn.innerText = 'Failed';
+        });
+    }
 </script>
 
 </body>
